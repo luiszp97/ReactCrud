@@ -1,0 +1,84 @@
+{
+  "users": [
+    {
+      "uid": 1,
+      "displayName": "Prueba Tecnica",
+      "email": "prueba@tecnica.com",
+      "password": "123456"
+    },
+    {
+      "firstname": "Gabriel",
+      "lastname": "Cabrera",
+      "email": "zambranoluis383@gmail.com",
+      "password": "asdasdas",
+      "displayName": "Gabriel Cabrera",
+      "id": "lfiuuf2xx9v07dzyl7p"
+    },
+    {
+      "firstname": "carmen",
+      "lastname": "parra",
+      "email": "carmenza1963@hotmail.com",
+      "password": "qwsadfasd",
+      "displayName": "Carmen Parra",
+      "id": "lfj6jvn2raqbyrtx2dq"
+    }
+  ],
+  "notes": [
+    {
+      "title": "Esto es una Nota",
+      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, sint saepe sed ullam minus, incidunt, earum unde esse odit maiores voluptatum quisquam doloribus? Voluptatibus consequatur voluptatem harum, ipsam dolorum illum!",
+      "importance": "low",
+      "userId": "1",
+      "displayName": "Prueba Tecnica",
+      "noteId": "231123"
+    },
+    {
+      "displayName": "Gabriel Cabrera",
+      "userId": "lfiuuf2xx9v07dzyl7p",
+      "id": "lfj4u8yazbvh6w9h38g",
+      "title": "asdfasdfas",
+      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, sint saepe sed ullam minus, incidunt, earum unde esse odit maiores voluptatum quisquam doloribus? Voluptatibus consequatur voluptatem harum, ipsam dolorum illum!",
+      "importance": "higth"
+    },
+    {
+      "displayName": "Gabriel Cabrera",
+      "userId": "lfiuuf2xx9v07dzyl7p",
+      "id": "lfj4wddl8gqtp1l3o4f",
+      "title": "asdfasdfas",
+      "content": "dfadsfasdfass",
+      "importance": "higth"
+    },
+    {
+      "displayName": "Gabriel Cabrera",
+      "userId": "lfiuuf2xx9v07dzyl7p",
+      "id": "lfj52zz6grpm4vta3t6",
+      "title": "dhdfghdfgh",
+      "content": "fghdfghdfgh",
+      "importance": "medium"
+    },
+    {
+      "displayName": "Carmen Parra",
+      "userId": "lfj6jvn2raqbyrtx2dq",
+      "id": "lfj6li1h9xnam8e3i2n",
+      "title": "Hola mundo",
+      "content": "El código HTTP de redirección 304 Not Modified en el response de la petición indica que no hay necesidad de retransmitir los recursos solicitados. Es una redirección implícita a un elemento/recurso de caché.",
+      "importance": "medium"
+    },
+    {
+      "displayName": "Carmen Parra",
+      "userId": "lfj6jvn2raqbyrtx2dq",
+      "id": "lfj7cd4amlyviidy4g",
+      "title": "Hellow World",
+      "content": "For optimal user experience, Material Design interfaces need to be able to adapt their layout at various breakpoints. MUI uses a simplified implementation of the original specification.\n\nThe breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the Grid component.",
+      "importance": "low"
+    },
+    {
+      "displayName": "Carmen Parra",
+      "userId": "lfj6jvn2raqbyrtx2dq",
+      "id": "lfj7f8e4sguluvfymcg",
+      "title": "te llamabas",
+      "content": "El código HTTP de redirección 304 Not Modified en el response de la petición indica que no hay necesidad de retransmitir los recursos solicitados. Es una redirección implícita a un elemento/recurso de caché.",
+      "importance": "higth"
+    }
+  ]
+}
