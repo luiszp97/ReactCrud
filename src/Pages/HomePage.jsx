@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Alert, AlertTitle, Box, Fab, Grid } from "@mui/material"
+import { Alert, AlertTitle, Box, Fab, Grid } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 
-import { NavBar } from "../Components/NavBar"
-import { NoteCard } from "../Components/NoteCard"
-import { PagesLayout } from "../layout/PagesLayout"
+import { NavBar, NoteCard, PopUpModal, UpdateDeleteModal } from "../Components";
+
+import { PagesLayout } from "../layout/PagesLayout";
 import { changeSaved, isSincronized, openModal } from "../store/notes";
-import { PopUpModal } from "../Components/PopUpModal";
 import { useDb } from "../hooks/useDb";
-import { UpdateDeleteModal } from "../Components/UpdateDeleteModal";
 
 export const HomePage = () => {
 
