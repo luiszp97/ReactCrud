@@ -9,7 +9,7 @@ export const AuthLayout = ({children, title}) => {
         justifyContent = "center"
         sx={ { 
             minHeight : '100vh', 
-            backgroundColor: '#4527a0', 
+            backgroundColor: '#90a4ae', 
             padding: 4}}
     >
 

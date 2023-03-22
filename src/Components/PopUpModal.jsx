@@ -1,14 +1,15 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
+
+import { Alert, Grid, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { useDispatch, useSelector } from 'react-redux';
-import { closeModal, setActiveNote } from '../store/auth/authSlice';
-import { Alert, Grid, InputLabel, MenuItem, Select, TextField } from '@mui/material';
-import { useForm } from 'react-hook-form';
-import { startSaveNewNote } from '../store/auth/thunks';
-import { useEffect, useState } from 'react';
-import { useDb } from '../hooks/useDb';
+
+import { changeLoading, closeModal, setActiveNote } from '../store/notes/notesSlice';
+import { startSaveNewNote } from '../store/notes/thunks';
+
 
 const style = {
   position: 'absolute',
@@ -26,15 +27,10 @@ const style = {
 export const PopUpModal = () => {
 
   
-  const { openModal, user: {displayName, id: userId}, activeNote, deleteNote } = useSelector(state => state.auth);
-
-  const [isActiveNote, setIsActiveNote] = useState(false);
-
-  const [title, setTitle] = useState("title")
-  const [importance, setImportance] = useState(null)
-  const [content, setContent] = useState(null)
+  const { user: {displayName, id: userId} } = useSelector(state => state.auth);
+  const { openModal, loading } = useSelector(state => state.notes);
   
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { register, handleSubmit, formState:{errors}, watch  } = useForm();
 
   const handleClose = () => {
@@ -42,59 +38,15 @@ export const PopUpModal = () => {
     dispatch( closeModal() )
     dispatch( setActiveNote(null) )
 
-    setIsActiveNote(false)
-
-    setTitle(null);
-    setImportance(null);
-    setContent(null);
     
   }
-
- 
-
-  useEffect(() => {
-
-    if(activeNote !== null){
-
-      setIsActiveNote(true)
-      setTitle(activeNote.title)
-      setImportance(activeNote.importance)
-      setContent(activeNote.content)
-
-    } else {
-      setIsActiveNote(false)
-      setTitle(null);
-      setImportance(null);
-      setContent(null);
-    }
-
-
-  }, [activeNote])
-  
-
 
   const onSumit = async ({title, content, importance}) => {
 
-    const post = await useDb("notes")
-    
-    if(activeNote !== null && post.some(element => element.id === activeNote.id)){
-      if(deleteNote){
-        console.log('delete')
-      } else {
-        console.log("update")
-      }
-    } else {
-      console.log('new')
+    dispatch( changeLoading( true ) )
+    dispatch( startSaveNewNote( {displayName, userId, title, content, importance} ) )
+   
     }
-
-    // dispatch( startSaveNewNote( {displayName, userId, title, content, importance} ) )
-
-  }
-
-  const updateNote = ()=> {
-    
-  }
-  
 
   return (
     <div>
@@ -121,8 +73,8 @@ export const PopUpModal = () => {
                   type="text"
                   placeholder= "Ponle un titulo a tu nota"
                   fullWidth
-                  value={ title }  
-                  {...register('title', {required:true, minLength: 4, onChange: (e)=> setTitle(e.target.value)})}
+                  autoComplete = 'off'
+                  {...register('title', {required:true, minLength: 4})}
                 />
                 
                 {errors.email?.type === "minLength" && <Alert severity = 'error' sx={{mt:1}}>Introduce un titulo valido</Alert> }
@@ -132,9 +84,8 @@ export const PopUpModal = () => {
                 <InputLabel >Importance</InputLabel>
                 <Select
                   fullWidth
-                  defaultValue='low'
-                  value={ importance }
-                  {...register('importance', {onChange: (e)=> setImportance(e.target.value)})}
+                  defaultValue="low"
+                  {...register('importance')}
                 >
                   <MenuItem value = "higth" >Higth</MenuItem>
                   <MenuItem value = "medium">Medium</MenuItem>
@@ -152,8 +103,7 @@ export const PopUpModal = () => {
                   multiline
                   minRows={6}
                   maxRows={10}
-                  value={ content}
-                  {...register('content', {required:true, minLength: 4, maxLength: 500, onChange: (e)=> setContent(e.target.value)})}
+                  {...register('content', {required:true, minLength: 4, maxLength: 500})}
                 />
 
                 {errors.content?.type === "maxLength" && <Alert severity = 'error' sx={{mt:1}}>Lo sentimos no puedes exceder los 500 caracteres </Alert> }
@@ -168,33 +118,15 @@ export const PopUpModal = () => {
 
               <Button
 
-                sx ={{backgroundColor: 'secundary.main', display:`${ isActiveNote ? 'none' : "block" }`}}
+                sx ={{backgroundColor: 'secundary.main'}}
                 type = 'submit' 
                 variant = 'contained' 
                 fullWidth 
+                disabled = { loading }
               >
                   Guardar Nota
               </Button>
-              <Button 
-                sx ={{display:`${ !isActiveNote ? 'none' : "block" }`, backgroundColor: '#4caf50', marginBottom:'5px', marginTop:'5px', ":hover": {backgroundColor: "#2e7d32"}}}
-                type = 'submit' 
-                variant = 'contained' 
-                fullWidth 
               
-              >
-                  Actualizar Nota
-              </Button>
-              <Button 
-                sx ={{display:`${ !isActiveNote ? 'none' : "block" }`,backgroundColor: '#d32f2f', ":hover": {backgroundColor: "#b71c1c"}}}
-                type = 'submit' 
-                variant = 'contained' 
-                fullWidth 
-                
-              
-              >
-                 Borrar Nota
-              </Button>
-
             </Grid>
 
             </Grid>

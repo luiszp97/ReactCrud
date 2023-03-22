@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { useDispatch, useSelector } from 'react-redux';
-import { openModal, setActiveNote } from '../store/auth';
+import { setActiveNote, setOpenUpdateDeleteModal } from '../store/notes';
 
 
 
@@ -28,7 +28,7 @@ export const NoteCard = ({importance, data}) => {
     const handleClick = () => {
 
         dispatch( setActiveNote( data ) )
-        dispatch( openModal() )
+        dispatch( setOpenUpdateDeleteModal() )
 
     }
 
@@ -41,7 +41,7 @@ export const NoteCard = ({importance, data}) => {
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
           {data.displayName}
         </Typography>
-        <Typography variant="body2">
+        <Typography variant="body2" fontSize={18}>
           {data.content}
         </Typography>
       </CardContent>

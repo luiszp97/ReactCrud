@@ -21,64 +21,64 @@
       "password": "qwsadfasd",
       "displayName": "Carmen Parra",
       "id": "lfj6jvn2raqbyrtx2dq"
+    },
+    {
+      "firstname": "yunior",
+      "lastname": "cardenas",
+      "email": "yunior@hotmail.com",
+      "password": "12345678",
+      "displayName": "Yunior Cardenas",
+      "id": "lfjxzw2xqk027zojxo"
     }
   ],
   "notes": [
     {
-      "title": "Esto es una Nota",
-      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, sint saepe sed ullam minus, incidunt, earum unde esse odit maiores voluptatum quisquam doloribus? Voluptatibus consequatur voluptatem harum, ipsam dolorum illum!",
+      "displayName": "Carmen Parra",
+      "userId": "lfj6jvn2raqbyrtx2dq",
+      "title": "Calentamiento Global",
+      "content": "El cambio climático hace referencia a los cambios a largo plazo de las temperaturas y los patrones climáticos. Estos cambios pueden ser naturales, pero desde el siglo XIX, las actividades humanas han sido el principal motor del cambio climático, debido principalmente a la quema de combustibles fósiles, como el carbón, el petróleo y el gas, lo que produce gases que atrapan el calor.",
       "importance": "low",
-      "userId": "1",
-      "displayName": "Prueba Tecnica",
-      "noteId": "231123"
-    },
-    {
-      "displayName": "Gabriel Cabrera",
-      "userId": "lfiuuf2xx9v07dzyl7p",
-      "id": "lfj4u8yazbvh6w9h38g",
-      "title": "asdfasdfas",
-      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, sint saepe sed ullam minus, incidunt, earum unde esse odit maiores voluptatum quisquam doloribus? Voluptatibus consequatur voluptatem harum, ipsam dolorum illum!",
-      "importance": "higth"
-    },
-    {
-      "displayName": "Gabriel Cabrera",
-      "userId": "lfiuuf2xx9v07dzyl7p",
-      "id": "lfj4wddl8gqtp1l3o4f",
-      "title": "asdfasdfas",
-      "content": "dfadsfasdfass",
-      "importance": "higth"
-    },
-    {
-      "displayName": "Gabriel Cabrera",
-      "userId": "lfiuuf2xx9v07dzyl7p",
-      "id": "lfj52zz6grpm4vta3t6",
-      "title": "dhdfghdfgh",
-      "content": "fghdfghdfgh",
-      "importance": "medium"
+      "id": "z3qt23ej6yd"
     },
     {
       "displayName": "Carmen Parra",
       "userId": "lfj6jvn2raqbyrtx2dq",
-      "id": "lfj6li1h9xnam8e3i2n",
-      "title": "Hola mundo",
-      "content": "El código HTTP de redirección 304 Not Modified en el response de la petición indica que no hay necesidad de retransmitir los recursos solicitados. Es una redirección implícita a un elemento/recurso de caché.",
-      "importance": "medium"
+      "title": "Next.js",
+      "content": "Next.js es un marco web de desarrollo front-end de React de código abierto creado por Vercel que habilita funcionalidades como la representación del lado del servidor y la generación de sitios web estáticos para aplicaciones web basadas en React.",
+      "importance": "medium",
+      "id": "bjz3do701na"
     },
     {
-      "displayName": "Carmen Parra",
-      "userId": "lfj6jvn2raqbyrtx2dq",
-      "id": "lfj7cd4amlyviidy4g",
-      "title": "Hellow World",
-      "content": "For optimal user experience, Material Design interfaces need to be able to adapt their layout at various breakpoints. MUI uses a simplified implementation of the original specification.\n\nThe breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the Grid component.",
-      "importance": "low"
+      "displayName": "Gabriel Cabrera",
+      "userId": "lfiuuf2xx9v07dzyl7p",
+      "title": "Que es un Hook",
+      "content": "Los Hooks son funciones que te permiten “enganchar” el estado de React y el ciclo de vida desde componentes de función. Los hooks no funcionan dentro de las clases — te permiten usar React sin clases.",
+      "importance": "higth",
+      "id": "j8j0yko41jd"
     },
     {
-      "displayName": "Carmen Parra",
-      "userId": "lfj6jvn2raqbyrtx2dq",
-      "id": "lfj7f8e4sguluvfymcg",
-      "title": "te llamabas",
-      "content": "El código HTTP de redirección 304 Not Modified en el response de la petición indica que no hay necesidad de retransmitir los recursos solicitados. Es una redirección implícita a un elemento/recurso de caché.",
-      "importance": "higth"
+      "displayName": "Yunior Cardenas",
+      "userId": "lfjxzw2xqk027zojxo",
+      "title": "MongoDb",
+      "content": "MongoDB es un sistema de base de datos NoSQL, orientado a documentos y de código abierto. En lugar de guardar los datos en tablas, tal y como se hace en las bases de datos relacionales,",
+      "importance": "medium",
+      "id": "527r8wqk4mg"
+    },
+    {
+      "displayName": "Yunior Cardenas",
+      "userId": "lfjxzw2xqk027zojxo",
+      "title": "Que es Express.js",
+      "content": "Express.js o simplemente Express, es un entorno de trabajo para aplicaciones web para el programario Node.js, de código abierto y con licencia MIT. Se utiliza para desarrollar aplicaciones web y APIs. El autor original es TJ Holowaychuk y la primera versión se lanzó el 2010.",
+      "importance": "low",
+      "id": "o7am2jrwj8m"
+    },
+    {
+      "displayName": "Yunior Cardenas",
+      "userId": "lfjxzw2xqk027zojxo",
+      "title": "Wifi-6",
+      "content": "WiFi 6 y WiFi 6E por Wi-Fi Alliance, ​ es un tipo de WLAN en el conjunto IEEE 802.11 de tipos de WLAN. IEEE 802.11ax está diseñado para operar en los espectros ya existentes de 2.4 GHz y 5 GHz.​​ ",
+      "importance": "medium",
+      "id": "konlkehr2s"
     }
   ]
 }

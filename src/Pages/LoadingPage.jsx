@@ -1,6 +1,6 @@
 
 export const LoadingPage = () => {
   return (
-    <div>Loading</div>
+    <div>Loadinggg</div>
   )
 }

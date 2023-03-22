@@ -2,11 +2,14 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { closeModal } from '../store/auth/authSlice';
-import { Alert, Grid, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { startSaveNewNote } from '../store/auth/thunks';
+import { Alert, Grid, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+
+import { changeLoading, closeUpdateDeleteModal, desincronized, setActiveNote } from '../store/notes';
+import { startDeletePost,  startUpdateNote } from '../store/notes';
+import { useDb } from '../hooks/useDb';
 
 const style = {
   position: 'absolute',
@@ -23,28 +26,71 @@ const style = {
 
 export const UpdateDeleteModal = () => {
 
-  const { openModal, user: {displayName, id: userId} } = useSelector(state => state.auth);
-  const dispatch = useDispatch()
-  const { register, handleSubmit, formState:{errors} } = useForm();
+   
+  const { user: {displayName, id: userId} } = useSelector(state => state.auth);
+  const { openUptadeDeleteModal, activeNote, loading } = useSelector( state => state.notes );
+  
+  const [title, setTitle] = useState("");
+  const [importance, setImportance] = useState("");
+  const [content, setContent] = useState("");
+
+
+  const dispatch = useDispatch();
+  const { register, handleSubmit, formState:{errors}, watch  } = useForm();
 
   const handleClose = () => {
 
-    dispatch( closeModal() )
+    dispatch( closeUpdateDeleteModal() );
+    dispatch( setActiveNote(null) );
+
     
   }
 
-  const onSumit = ({title, content, importance}) => {
+  useEffect(() => {
+    
+    if(activeNote !== null){
 
-    const id =  Date.now().toString(36) + Math.random().toString(36).substring(2)
-    dispatch( startSaveNewNote( {displayName, userId, id, title, content, importance} ) )
+      setTitle(activeNote.title)
+      setImportance(activeNote.importance)
+      setContent(activeNote.content)
 
-  }
+    }
+
+  }, [openUptadeDeleteModal])
   
+
+  const onSumit = async ({title, content, importance}) => {
+
+    dispatch( changeLoading( true ) );
+
+    const noteUpdated = {...activeNote, title, content, importance};
+    
+    dispatch( startUpdateNote( noteUpdated, activeNote.id ) )
+   
+  }
+
+  const handleDelete = async () =>{
+    
+    const {data : notes} = await useDb('notes');
+    const existingNote = notes.some(element => element.id === activeNote.id);
+
+    dispatch( changeLoading( true ) )
+
+    if(existingNote){
+
+      dispatch( startDeletePost( activeNote.id, activeNote.userId ) )
+
+    }else{
+
+      dispatch( desincronized() )
+      console.log('la Nota no existe en db')
+    }
+  }
 
   return (
     <div>
       <Modal
-        open={openModal}
+        open={openUptadeDeleteModal}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -52,7 +98,7 @@ export const UpdateDeleteModal = () => {
         <Box sx={style}>
 
           <Typography id="modal-modal-title" variant="h6" component="h2" textAlign='center'>
-            Tu Nota
+            Edita tu Nota
           </Typography>
 
           <form onSubmit={ handleSubmit( onSumit ) }>
@@ -66,17 +112,20 @@ export const UpdateDeleteModal = () => {
                   type="text"
                   placeholder= "Ponle un titulo a tu nota"
                   fullWidth
-                  {...register('title', {required:true, minLength: 4})}
+                  value={ activeNote !== null ? title : "title"}
+                  autoComplete = 'off'
+                  {...register('title', {required:true, minLength: 4, onChange: (e)=> setTitle(e.target.value)})}
                 />
                 
                 {errors.email?.type === "minLength" && <Alert severity = 'error' sx={{mt:1}}>Introduce un titulo valido</Alert> }
 
               </Grid>
               <Grid item xs = {12} sx = {{mt: 2}}>
-                <InputLabel id="demo-simple-select-label">Importance</InputLabel>
+                <InputLabel >Importance</InputLabel>
                 <Select
                   fullWidth
-                  {...register('importance')}
+                  value={ activeNote !== null ? importance : "low"}
+                  {...register('importance', { onChange:(e)=> setImportance(e.target.value) })}
                 >
                   <MenuItem value = "higth" >Higth</MenuItem>
                   <MenuItem value = "medium">Medium</MenuItem>
@@ -94,7 +143,8 @@ export const UpdateDeleteModal = () => {
                   multiline
                   minRows={6}
                   maxRows={10}
-                  {...register('content', {required:true, minLength: 4, maxLength: 500})}
+                  value={ activeNote !== null ? content : "content"}
+                  {...register('content', {required:true, minLength: 4, maxLength: 500, onChange: (e)=> setContent(e.target.value)})}
                 />
 
                 {errors.content?.type === "maxLength" && <Alert severity = 'error' sx={{mt:1}}>Lo sentimos no puedes exceder los 500 caracteres </Alert> }
@@ -108,14 +158,27 @@ export const UpdateDeleteModal = () => {
             <Grid item xs={12} >
 
               <Button 
-                sx ={{backgroundColor: 'secundary.main'}}
+                sx ={{backgroundColor: '#4caf50', marginBottom:'5px', marginTop:'5px', ":hover": {backgroundColor: "#2e7d32"}}}
                 type = 'submit' 
                 variant = 'contained' 
                 fullWidth 
+                disabled = { loading }
               
               >
-                  Guardar Nota
+                  Actualizar Nota
               </Button>
+              <Button 
+                sx ={{backgroundColor: '#d32f2f', ":hover": {backgroundColor: "#b71c1c"}}}
+                variant = 'contained' 
+                type='button'
+                fullWidth 
+                onClick={ handleDelete }
+                disabled = { loading }
+                
+              >
+                 Borrar Nota
+              </Button>
+
 
             </Grid>
 

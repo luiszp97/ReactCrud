@@ -16,7 +16,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { AutoStories } from '@mui/icons-material';
 
-import { logout, openModal } from "../store/auth"
+import { logout } from "../store/auth"
+import { openModal } from "../store/notes"
 // import { startLogout } from '../../store/auth/thunks';
 
 const pages = ['Notes', 'Create New Note', 'My Notes'];

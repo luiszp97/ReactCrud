@@ -1,4 +1,5 @@
-import { closeModal, desincronized, errorRegister, login } from "./authSlice"
+
+import { errorRegister, login } from "./authSlice"
 
 export const startRegisterUser = ( info )=>{
 
@@ -16,8 +17,6 @@ export const startRegisterUser = ( info )=>{
             const randomUid =  Date.now().toString(36) + Math.random().toString(36).substring(2)
 
             const userInfo = {...info, id: `${randomUid}` }
-
-            console.log(userInfo)
 
             await fetch( "http://localhost:3004/users", {
                 method: "POST",
@@ -65,25 +64,3 @@ export const startLoginUser = ( info ) => {
     }
 };
 
-export const startSaveNewNote = ( data ) => {
-
-    return async (dispatch) =>{
-
-        const id =  Date.now().toString(36) + Math.random().toString(36).substring(2)
-
-        await fetch( "http://localhost:3004/notes", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify( data )
-        } )
-       
-        dispatch( closeModal() )
-        dispatch( desincronized() )
-
-        
-        
-
-    }
-}
